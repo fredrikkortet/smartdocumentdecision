@@ -1,1 +1,4 @@
 ruff
+pdfplumber
+python-docx
+ollama

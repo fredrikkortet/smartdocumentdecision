@@ -16,6 +16,9 @@ lint:
 lint-fix:
 	$(PYTHON) -m ruff check . --fix --show-fixes
 
+run:
+	PYTHONPATH=src $(PYTHON) src/main.py tests/documents/sample.txt
+
 clean:
 	find . -type f -name "*.pyc" -delete
 	find . -type d -name "__pycache__" -exec rm -rf {} +

@@ -1,0 +1,17 @@
+You are an AI assistant performing document analysis.
+
+Your task:
+Summarize the following text chunk in a clear, concise, and objective way.
+
+Requirements:
+- Summarize only what is present in this chunk.
+- Do NOT hallucinate missing context.
+- Do NOT refer to "this chunk" or "this text."
+- Produce a factual summary using neutral language.
+- Length: 3–6 sentences.
+- If the chunk contains mostly noise (headers, footers, tables with no meaning, repeated text), respond with: "LOW INFORMATION CONTENT".
+
+<CHUNK>
+{{chunk_text}}
+</CHUNK>
+
