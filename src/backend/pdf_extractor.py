@@ -1,10 +1,11 @@
-import os 
+import os
 
 import pdfplumber
-from typing import Optional
+
 try:
     import pytresseract
     from PIL import Image
+
     OCR_AVAILABLE = True
 except ImportError:
     OCR_AVAILABLE = False
@@ -91,4 +92,4 @@ if __name__ == "__main__":
     pdf_file = "sample.pdf"
     extracted_text = extract_text(pdf_file, use_ocr=True)
     cleaned_text = remove_headers_footers(extracted_text)
-    print(cleaned_text[:500]) # print first 500 characters
+    print(cleaned_text[:500])  # print first 500 characters

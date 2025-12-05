@@ -17,7 +17,7 @@ def remove_headers_footers(text: str, repeated_threshold=2) -> str:
 def normalize_text(text: str) -> str:
     """
     Normalize whitespace and line breaks in text.
-    
+
     - Replace multiple spaces/tabs with a single space
     - Remove leading/trailing spaces on each line
     - Normalize line breaks to '\n'
