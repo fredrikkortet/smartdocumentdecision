@@ -1,4 +1,5 @@
 import os
+import sys
 
 import pdfplumber
 
@@ -156,6 +157,8 @@ def chunk_text(text: str, chunk_size=2000, overlap=200) -> List[dict]:
         chunks.append({"chunk_id": chunk_id, "text": text[start:end]})
         chunk_id += 1
         start = end - overlap
+        if end == text_len:
+            break
     return chunks
 
 

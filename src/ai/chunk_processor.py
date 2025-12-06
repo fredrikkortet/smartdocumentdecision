@@ -7,7 +7,7 @@ from ai.schema import ChunkResult
 class ChunkProcessor:
 
     def __init__(self, backend=None):
-        self.llm = backend or OllamaBackend(model="mistral")
+        self.llm = backend or OllamaBackend(model="gemma3")
 
         base = Path(__file__).parent / "prompts"
         self.summary_template = (base / "chunk_summary.txt").read_text()
@@ -20,7 +20,6 @@ class ChunkProcessor:
     def process_chunk(self, chunk_text: str, chunk_id: int) -> ChunkResult:
         summary_prompt = self.fill(self.summary_template, chunk_text)
         key_prompt = self.fill(self.keyinfo_template, chunk_text)
-
         summary = self.llm.chat(summary_prompt)
         key_info_raw = self.llm.chat(key_prompt)
 

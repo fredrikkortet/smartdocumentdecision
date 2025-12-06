@@ -9,15 +9,15 @@ def main(file_path: str):
     
     # Split sections into chunks (simple example: by 1000 chars)
     chunks = []
-    chunk_size = 1000
-    overlap = 200
+    chunk_size = 100
+    overlap = 20
     chunks = chunk_text(text=clean_text, chunk_size=chunk_size, overlap=overlap)
 
     #  Process chunks with LLM
     processor = ChunkProcessor()
     results = []
     for idx, chunk in enumerate(chunks):
-        result = processor.process_chunk(chunk, idx)
+        result = processor.process_chunk(chunk["text"], idx)
         results.append(result)
 
     #  Store results
