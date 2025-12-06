@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
 
     %% User Layer
@@ -38,3 +39,4 @@ flowchart TD
     ContextFile[(context.md)]
     ContextFile --> LLMDoc
 
+```
