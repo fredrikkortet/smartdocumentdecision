@@ -2,3 +2,4 @@ Project.md
 todo.md
 .venv
 output/
+__pycache__

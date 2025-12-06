@@ -1,11 +1,9 @@
 import os
-import sys
 
 import pdfplumber
 
 try:
     import pytresseract
-    from PIL import Image
 
     OCR_AVAILABLE = True
 except ImportError:
@@ -89,6 +87,7 @@ def _remove_headers_footers(text: str, repeated_threshold=2) -> str:
         line_counts[line] = line_counts.get(line, 0) + 1
     clean_lines = [line for line in lines if line_counts[line] < repeated_threshold]
     return "\n".join(clean_lines)
+
 
 def _normalize_text(text: str) -> str:
     """

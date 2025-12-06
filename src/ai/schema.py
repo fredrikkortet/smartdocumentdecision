@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Dict, Any
+from typing import Dict, Any
 
 
 class ChunkResult(BaseModel):
@@ -7,4 +7,3 @@ class ChunkResult(BaseModel):
     text: str
     summary: str
     key_info: Dict[str, Any]
-

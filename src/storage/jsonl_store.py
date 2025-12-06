@@ -25,4 +25,3 @@ class JSONLStore:
                 data = json.loads(line)
                 results.append(ChunkResult(**data))
         return results
-

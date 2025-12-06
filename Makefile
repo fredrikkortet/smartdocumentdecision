@@ -17,7 +17,7 @@ lint-fix:
 	$(PYTHON) -m ruff check . --fix --show-fixes
 
 run:
-	PYTHONPATH=src $(PYTHON) src/main.py tests/documents/sample.txt
+	PYTHONPATH=src $(PYTHON) src/main.py tests/documents/sample.txt context.md
 
 clean:
 	find . -type f -name "*.pyc" -delete
