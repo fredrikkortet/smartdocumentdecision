@@ -9,3 +9,7 @@ class HFBackend(LLMBackend):
     def chat(self, prompt: str) -> str:
         output = self.pipe(prompt)[0]["generated_text"]
         return output
+
+    def generate(self, prompt: str) -> str:
+        # Provide a generate alias for compatibility with backends that call generate()
+        return self.chat(prompt)

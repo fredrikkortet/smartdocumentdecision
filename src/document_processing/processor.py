@@ -1,15 +1,30 @@
 import os
 
-import pdfplumber
+# Optional dependencies: pdfplumber for PDFs, python-docx for .docx
+try:
+    import pdfplumber
+
+    PDF_AVAILABLE = True
+except Exception:
+    pdfplumber = None
+    PDF_AVAILABLE = False
 
 try:
-    import pytresseract
+    import pytesseract
 
     OCR_AVAILABLE = True
-except ImportError:
+except Exception:
+    pytesseract = None
     OCR_AVAILABLE = False
 
-import docx
+try:
+    import docx
+
+    DOCX_AVAILABLE = True
+except Exception:
+    docx = None
+    DOCX_AVAILABLE = False
+
 import re
 from typing import List
 
@@ -34,7 +49,7 @@ def _extract_text_from_pdf(pdf_path: str, use_ocr=False) -> str:
             elif use_ocr and OCR_AVAILABLE:
                 # fallback OCR
                 pil_image = page.to_image(resolution=300).original
-                page_text = pytresseract.image_to_string(pil_image)
+                page_text = pytesseract.image_to_string(pil_image)
                 text += page_text + "\n"
             else:
                 text += "\n"

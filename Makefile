@@ -22,7 +22,10 @@ run:
 clean:
 	find . -type f -name "*.pyc" -delete
 	find . -type d -name "__pycache__" -exec rm -rf {} +
-	rm -rf build dist *.egg-info
+	rm -rf build dist *.egg-info output
 	rm -rf $(VENV)
 
-check: format lint
+check: format lint test
+
+test: install
+	$(PYTHON) -m pytest -q
