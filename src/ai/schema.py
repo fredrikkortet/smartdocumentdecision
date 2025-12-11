@@ -29,6 +29,10 @@ if PYDANTIC_AVAILABLE:
                 except Exception:
                     return {}
 
+    class BackendSpec(BaseModel):
+        provider: str
+        model: str
+        
 else:
     from dataclasses import dataclass, asdict
     from typing import List

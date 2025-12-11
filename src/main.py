@@ -91,14 +91,30 @@ def process_document(file_path: str, context_path: str, backend=None):
     confidence = engine.compute_confidence(chunk_summaries, metadata)
     recommendation = engine.final_recommendation(score)
 
+    # Additional document-level run via DocumentReasoner to extract insights/uncertainties
+    reasoner = DocumentReasoner(ai, context_path=context_path)
+    try:
+        doc_level = reasoner.combine(chunk_summaries)
+    except Exception:
+        doc_level = {"summary": combined["combined_summary"], "insights": [], "uncertainties": [], "confidence": 0.0}
+
+    # Decision details from the reasoner
+    decision_details = reasoner.decide_need_full_read(doc_level)
+
     # -------------------------
     # 4. Final Output
     # -------------------------
     return {
         "summary": combined["combined_summary"],
+        "doc_summary": doc_level.get("summary", combined["combined_summary"]),
+        "insights": doc_level.get("insights", []),
+        "uncertainties": doc_level.get("uncertainties", []),
+        "doc_confidence": doc_level.get("confidence", 0.0),
         "topics": combined["combined_topics"],
         "score": score,
         "recommendation": recommendation,
+        "need_full_read": decision_details.get("need_full_read", False),
+        "read_reasons": decision_details.get("reasons", []),
         "confidence": confidence,
         "metadata": metadata,
         "chunks": chunk_summaries,
