@@ -2,3 +2,7 @@ ruff
 pdfplumber
 python-docx
 ollama
+streamlit
+fastapi
+uvicorn
+python-multipart

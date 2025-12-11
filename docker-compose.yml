@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartdoc_api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the source code for development/debugging, remove for production
+      - ./src:/app/src
+      - ./context.md:/app/context.md
+    environment:
+      # Set PYTHONPATH to include the src directory
+      - PYTHONPATH=/app/src
+    # Use the command from the Dockerfile, or override for development
+    # command: uvicorn api.app:app --host 0.0.0.0 --port 8000 --reload
