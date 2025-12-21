@@ -64,6 +64,12 @@ def _load_backend(link: BackendSpec | None) -> Any:
 app = FastAPI(title="AI Document Relevance Agent")
 
 
+@app.get("/")
+def read_root():
+    return {"status": "online", "message": "Smart Document Decision API is ready"}
+
+
+
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     logger.info("Incoming request: %s %s", request.method, request.url.path)
